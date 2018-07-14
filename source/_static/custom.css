@@ -1,0 +1,34 @@
+/*
+ * custom.css
+ * ~~~~~~~~~~~~~~
+ *
+ * Overwrite business style theme.
+ *
+ * :copyright: Copyright 2015 by Noriyuki Nakaishi.
+ * :license: BSD, see LICENSE for details.
+ */
+
+div.body h1 a, div.body h2 a, div.body h3 a,
+div.body h4 a, div.body h5 a, div.body h6 a {
+    color: #336699!important;
+    text-decoration: none;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 50px!important;
+    margin-top: 5px;
+}
+
+.border {
+    border: 1px #000 solid;
+}
+
+.footer {
+    white-space: pre-line;
+}
+
+.highlight-bash .highlight  { background: #222!important; border: solid 1px #000000; color: #fff!important}
+.highlight-bash .highlight pre {border-left-color: #222; border-right-color: #222}
+.highlight-bash .highlight span {color: #fff!important; font-weight: normal!important;}
+.highlight-bash .highlight span {color: #fff!important; font-weight: normal!important;}

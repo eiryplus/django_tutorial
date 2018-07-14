@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="ja">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+<form action="" method="get">
+    <label>名前：<input type="text" name="your_name"></label><br>
+    <input type="submit" value="送信">
+</form>
+{% if your_name %}
+{{ your_name }}さん{{ greeting_message }}
+{% else %}
+名前を入力してください。
+{% endif %}
+</body>
+</html>

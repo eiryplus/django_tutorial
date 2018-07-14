@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block body %}
+  {{ message }}
+  <hr>
+  <form method="get" action="">
+    {{ form.errors.your_name }}
+    <label>{{ form.your_name.label }} {{ form.your_name }}</label><br>
+    <input type="submit" value="送信">
+  </form>
+{% endblock %}

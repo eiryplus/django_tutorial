@@ -1,0 +1,17 @@
+.. |url_conf| replace:: URLConf
+
+.. |url_dispatcher| replace:: URLディスパッチャ
+
+.. |view_method| replace:: ビュー関数
+
+.. |template_file| replace:: テンプレートファイル
+
+.. |django_form| replace:: Djangoフォーム
+
+.. |django_model_form| replace:: Djangoモデルフォーム
+
+.. |django_application| replace:: Djangoアプリケーション
+
+.. |django_project| replace:: Djangoプロジェクト
+
+.. |django_model| replace:: Djangoモデル

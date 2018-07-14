@@ -1,0 +1,52 @@
+{% extends "guestboard/base.html" %}
+{% block title %}Guest Board{% endblock %}
+{% block body %}
+  <div class="page-header">
+    <h1>Guest Board</h1>
+  </div>
+  {# 画面上段 - 入力フォームを定義する #}
+  <form action="{% url 'guestboard:index' %}" method="post">
+    <div class="row">
+      {% for field in form %}
+        <div class="form-group">
+          {% if field.errors %}
+            <div class="col-sm-10">
+              <span class="col-sm-10">{{ field.errors }}</span>
+            </div>
+          {% endif %}
+          <div class="col-sm-10">
+            <label class="col-sm-3 control-label">{{ field.label_tag }}</label>
+            <label class="label col-sm-7">{{ field }}</label>
+          </div>
+        </div>
+      {% endfor %}
+      <div class="col-sm-10">
+        <div class="form-group">
+          <label class="col-sm-2 control-label"><input type="submit" class="btn btn-primary" value="登録"></label>
+          {% csrf_token %}
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr>
+  {# 画面下段 - 投稿内容とページネーター用のパーツを表示する #}
+  {% include "pagination.html" %}{# ページネーター用のパーツ #}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        {% for posting in page %}
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ posting.name }} <label class="small">投稿日時：{{ posting.created_at }}</label></h3>
+            </div>
+            <div class="panel-body">
+              {{ posting.message }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% include "pagination.html" %}{# ページネーター用のパーツ #}
+
+{% endblock %}

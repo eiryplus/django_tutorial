@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <h1>your_nameを登録する</h1>
+  <h2>登録</h2>
+  <form method="post" action="">
+    {{ form.errors.your_name }}
+    <label>{{ form.your_name.label }} {{ form.your_name }}</label><br>
+    <input type="submit" value="送信">
+    {% csrf_token %}
+  </form>
+  <hr>
+  <h2>一覧</h2>
+  {% for h in hello_qs %}
+    {{ h.your_name }}<br>
+  {% endfor %}
+{% endblock %}

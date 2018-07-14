@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <a href="{% url 'crud:add' %}">追加画面へ</a>
+  <form method="post" action="{% url 'crud:delete' %}">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>　</th>
+          <th>message</th>
+          <th>created_at</th>
+          <th>updated_at</th>
+          <th>　</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in msgs %}
+          <tr>
+            <td><input type="checkbox" name="delete_ids" value="{{ message.id }}"></td>
+            <td>{{ message.message }}</td>
+            <td>{{ message.created_at|date:"Y/m/d" }}</td>
+            <td>{{ message.updated_at|date:"Y/m/d" }}</td>
+            <td><a href="{% url 'crud:edit' message.id %}">更新画面へ</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% csrf_token %}
+    <input type="submit" value="削除">
+  </form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <form method="get" action="">
+    {{ form.age.label }}：
+    {{ form.age }}
+    <hr>
+
+    {{ form.gender_r.label }}：
+    {% for gender in form.gender_r %}
+      {{ gender }}
+    {% endfor %}
+    <hr>
+
+    {{ form.gender_s.label }}：
+    {{ form.gender_s }}
+    <hr>
+
+    {{ form.send_message.label }}：
+    {{ form.send_message }}
+    <hr>
+
+    {{ form.birthday.label }}：
+    {{ form.birthday }}
+    <hr>
+
+    {{ form.food_s.label }}：
+    {{ form.food_s }}
+    <hr>
+
+    {{ form.food_c.label }}：
+    {% for food in form.food_c %}
+      {{ food }}
+    {% endfor %}
+    <hr>
+
+  </form>
+{% endblock %}
+

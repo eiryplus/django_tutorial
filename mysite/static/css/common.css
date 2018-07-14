@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.errorlist {
+    color: red;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.errorlist li {
+    list-style-type: none;
+}
+
+.messages {
+    margin: 0;
+    padding: 0;
+}
+
+.messages li {
+    list-style-type: none;
+    padding: 15px;
+}
+
+.messages li.success {
+    color: #00F;
+    background-color: #DDF;
+}
+
+.messages li.error {
+    color: #F00;
+    background-color: #FDD;
+}

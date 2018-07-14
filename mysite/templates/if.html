@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}ifタグの練習{% endblock %}
+
+{% block body %}
+{% if is_visible %}
+is_visibleがTrueなので表示します。<br>
+{% else %}
+is_visibleがFalseなので表示します。<br>
+{% endif %}
+
+{% if empty_str|length > 0 %}
+empty_strの文字数は{{ empty_str|length }}です。
+{% else %}
+empty_strが空です。<br>
+{% endif %}
+{% endblock %}
