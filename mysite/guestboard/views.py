@@ -25,19 +25,19 @@ def _get_page(list_, page_no, count=5):
 
 def index(request):
     form = PostingForm(request.POST or None)
-    if request.method == 'POST':
+    if request.method == "POST":
         if form.is_valid():
             form.save()
-            messages.success(request, '投稿を受付ました。')
-            return redirect('guestboard:index')
+            messages.success(request, "投稿を受付ました。")
+            return redirect("guestboard:index")
         else:
-            messages.error(request, '入力内容に誤りがあります。')
+            messages.error(request, "入力内容に誤りがあります。")
     page = _get_page(
-        Posting.objects.order_by('-id'),
-        request.GET.get('page')
+        Posting.objects.order_by("-id"),
+        request.GET.get("page")
     )
     contexts = {
-        'form': form,
-        'page': page,
+        "form": form,
+        "page": page,
     }
-    return render(request, 'guestboard/index.html', contexts)
+    return render(request, "guestboard/index.html", contexts)
