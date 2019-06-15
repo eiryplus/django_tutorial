@@ -1,1 +1,5 @@
-Django>=2.0,<2.1
+Django
+pytest
+pytest-django
+factory_boy
+pytest-cov

@@ -5,7 +5,7 @@
     <h1>Guest Board</h1>
   </div>
   {# 画面上段 - 入力フォームを定義する #}
-  <form action="{% url 'guestboard:index' %}" method="post">
+  <form action="{% url 'guestboard:create' %}" method="post">
     <div class="row">
       {% for field in form %}
         <div class="form-group">
@@ -28,25 +28,4 @@
       </div>
     </div>
   </form>
-  <hr>
-  {# 画面下段 - 投稿内容とページネーター用のパーツを表示する #}
-  {% include "pagination.html" %}{# ページネーター用のパーツ #}
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8">
-        {% for posting in page %}
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title">{{ posting.name }} <label class="small">投稿日時：{{ posting.created_at }}</label></h3>
-            </div>
-            <div class="panel-body">
-              {{ posting.message }}
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  {% include "pagination.html" %}{# ページネーター用のパーツ #}
-
 {% endblock %}

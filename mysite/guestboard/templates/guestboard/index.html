@@ -1,0 +1,27 @@
+{% extends "guestboard/base.html" %}
+{% block title %}Guest Board{% endblock %}
+{% block body %}
+  <div class="page-header">
+    <h1>Guest Board</h1>
+  </div>
+  <a href="{% url "guestboard:create" %}">登録画面へ</a>
+  {% include "guestboard/pagination.html" %}{# ページネーター用のパーツ #}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        {% for posting in object_list %}
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ posting.name }} <label class="small">投稿日時：{{ posting.created_at }}</label></h3>
+            </div>
+            <div class="panel-body">
+              {{ posting.message }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% include "guestboard/pagination.html" %}{# ページネーター用のパーツ #}
+
+{% endblock %}

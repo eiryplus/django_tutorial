@@ -5,5 +5,6 @@ app_name = "guestboard"
 
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", views.index_, name="index"),
+    path("create/", views.create, name="create"),
 ]

@@ -15,7 +15,7 @@ def hello_template(request):
         'hour': datetime.now().hour,
         'message': 'Sample message',
     }
-    return render(request, 'index.html', d)
+    return render(request, 'hello/index.html', d)
 
 
 def hello_if(request):
@@ -23,21 +23,21 @@ def hello_if(request):
         'is_visible': False,
         'empty_str': '',
     }
-    return render(request, 'if.html', d)
+    return render(request, 'hello/if.html', d)
 
 
 def hello_for(request):
     d = {
         'objects': range(10),
     }
-    return render(request, 'for.html', d)
+    return render(request, 'hello/for.html', d)
 
 
 def hello_get_query(request):
     d = {
         'your_name': request.GET.get('your_name')
     }
-    return render(request, 'get_query.html', d)
+    return render(request, 'hello/get_query.html', d)
 
 
 def hello_forms(request):
@@ -50,14 +50,14 @@ def hello_forms(request):
         'form': form,
         'message': message,
     }
-    return render(request, 'forms.html', d)
+    return render(request, 'hello/forms.html', d)
 
 
 def hello_sample_forms(request):
     d = {
         'form': forms.SampleForm(),
     }
-    return render(request, 'form_samples.html', d)
+    return render(request, 'hello/form_samples.html', d)
 
 
 def hello_models(request):
@@ -69,4 +69,4 @@ def hello_models(request):
         'form': form,
         'hello_qs': models.Hello.objects.all().order_by('-id')
     }
-    return render(request, 'models.html', d)
+    return render(request, 'hello/models.html', d)
