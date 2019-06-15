@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <a href="{% url 'crud:index' %}">一覧画面へ</a>
+    <a href="{% url 'crud:list' %}">一覧画面へ</a>
     <form action="" method="post">
         {{ form.errors.message }}
         <label>{{ form.message.label }}{{ form.message }}</label><br/>

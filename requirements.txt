@@ -1,1 +1,5 @@
-Django>=1.11,<2
+Django
+pytest
+pytest-django
+factory_boy
+pytest-cov

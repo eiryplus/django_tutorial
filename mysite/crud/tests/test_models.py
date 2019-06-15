@@ -1,12 +1,16 @@
 from django.test import TestCase
-from ..models import Message
 
 
 class MessageTest(TestCase):
+
+    def _getClass(self):
+        from crud.models import Message
+        return Message
+
     def setUp(self):
-        self.m1 = Message(message="A"*30)
+        self.m1 = self._getClass()(message="A"*30)
         self.m1.save()
-        self.m2 = Message(message="B"*255)
+        self.m2 = self._getClass()(message="B"*255)
         self.m2.save()
 
     def tearDown(self):

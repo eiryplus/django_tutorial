@@ -1,10 +1,12 @@
-from django.conf.urls import url
-from . import views
+from django.urls import path
+from crud import views
 
+
+app_name = "crud"
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^add/$', views.add, name='add'),
-    url(r'^delete/$', views.delete, name='delete'),
-    url(r'^edit/(?P<editing_id>\d+)/$', views.edit, name='edit'),
+    path(r'', views.list_, name='list'),
+    path('create/', views.create, name='create'),
+    path('update/<int:pk>/', views.update, name='update'),
+    path('delete/<int:pk>/', views.delete_, name='delete'),
 ]

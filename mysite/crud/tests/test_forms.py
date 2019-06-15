@@ -1,17 +1,18 @@
 from django.test import TestCase
-from ..forms import (
-    MessageForm
-)
 
 
 class MessageFormTest(TestCase):
+
+    def _getClass(self):
+        from crud.forms import MessageForm
+        return MessageForm
 
     def test_valid(self):
         """
         validationが成功するケース
         """
         d = {'message': 'a'*255}
-        form = MessageForm(d)
+        form = self._getClass()(d)
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data, d)
 
@@ -21,10 +22,10 @@ class MessageFormTest(TestCase):
         """
         # max_length
         d = {'message': 'a'*256}
-        form = MessageForm(d)
+        form = self._getClass()(d)
         self.assertFalse(form.is_valid())
 
         # empty
         d = {'message': ''}
-        form = MessageForm(d)
+        form = self._getClass()(d)
         self.assertFalse(form.is_valid())

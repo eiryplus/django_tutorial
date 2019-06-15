@@ -1,51 +1,37 @@
-from django.shortcuts import (
-    render,
-    redirect,
-    get_object_or_404,
-)
-from django.views.decorators.http import require_POST  # 追加する
+from django.urls import reverse_lazy
+from django.views import generic
 from .models import Message
 from .forms import MessageForm
 
 
-def index(request):
-    d = {
-        'msgs': Message.objects.all(),
-    }
-    return render(request, 'crud/index.html', d)
+class ListView(generic.ListView):
+    model = Message
+    template_name = "crud/index.html"
 
 
-def add(request):
-    form = MessageForm(request.POST or None)
-    if form.is_valid():
-        Message.objects.create(**form.cleaned_data)
-        return redirect('crud:index')
-    d = {
-        'form': form,
-    }
-    return render(request, 'crud/edit.html', d)
+class CreateView(generic.CreateView):
+    template_name = "crud/edit.html"
+    form_class = MessageForm
+    success_url = reverse_lazy("crud:list")
 
 
-def edit(request, editing_id):
-    message = get_object_or_404(Message, id=editing_id)
-    if request.method == 'POST':
-        form = MessageForm(request.POST)
-        if form.is_valid():
-            message.message = form.cleaned_data['message']
-            message.save()
-            return redirect('crud:index')
-    else:
-        # GETリクエスト（初期表示）時はDBに保存されているデータをFormに結びつける
-        form = MessageForm({'message': message.message})
-    d = {
-        'form': form,
-    }
-    return render(request, 'crud/edit.html', d)
+class UpdateView(generic.UpdateView):
+    pk_url_kwarg = "pk"   # 定義しない場合は "pk" が使われるので、今回は省略可
+    template_name = "crud/edit.html"
+    form_class = MessageForm
+    queryset = Message.objects
+    success_url = reverse_lazy("crud:list")
 
 
-@require_POST
-def delete(request):
-    delete_ids = request.POST.getlist('delete_ids')
-    if delete_ids:
-        Message.objects.filter(id__in=delete_ids).delete()
-    return redirect('crud:index')
+class DeleteView(generic.DeleteView):
+    pk_url_kwarg = "pk"   # 定義しない場合は "pk" が使われるので、今回は省略可
+    template_name = "crud/edit.html"
+    form_class = MessageForm
+    queryset = Message.objects
+    success_url = reverse_lazy("crud:list")
+
+
+list_ = ListView.as_view()
+create = CreateView.as_view()
+update = UpdateView.as_view()
+delete_ = DeleteView.as_view()
