@@ -59,13 +59,29 @@ class HelloSampleFormsTest(TestCase):
 
 
 class HelloModelsTest(TestCase):
+    def _get_count(self) -> int:
+        from hello.models import Hello
+        return Hello.objects.count()
+
     def test_get(self):
         url_ = reverse("hello:hello_models")
         response = self.client.get(url_)
         self.assertEqual(response.status_code, 200)
 
-    def test_post(self):
+    def test_post_valid(self):
+        before_cnt = self._get_count()
         url_ = reverse("hello:hello_models")
         data = {"your_name": "TestName"}
         response = self.client.post(url_, data=data, follow=True)
+        after_cnt = self._get_count()
         self.assertEqual(response.redirect_chain,  [(url_, 302)])
+        self.assertEqual(before_cnt+1, after_cnt)
+
+    def test_post_invalid(self):
+        before_cnt = self._get_count()
+        url_ = reverse("hello:hello_models")
+        data = {"": ""}
+        response = self.client.post(url_, data=data, follow=True)
+        after_cnt = self._get_count()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(before_cnt, after_cnt)
