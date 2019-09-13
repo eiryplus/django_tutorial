@@ -85,7 +85,23 @@ class CreateViewTest(TestCase):
         return Posting.objects.count()
 
     def test_post_valid(self):
-        raise ValueError()  # またあとでやる
+        data = {
+            "name": "a",
+            "message": "b",
+        }
+        before_count = self._get_count()
+        response = self._getResponse(data)
+        after_count = self._get_count()
+        self.assertEqual(before_count+1, after_count)
+        self.assertEqual(response.status_code, 302)
 
     def test_post_invalid(self):
-        raise ValueError()  # またあとでやる
+        before_count = self._get_count()
+        with self.subTest("nameが未入力"):
+            response = self._getResponse(dict(name="", message="a"))
+            self.assertEqual(response.status_code, 200)
+        with self.subTest("messageが未入力"):
+            response = self._getResponse(dict(name="a", message=""))
+        self.assertEqual(response.status_code, 200)
+        after_count = self._get_count()
+        self.assertEqual(before_count, after_count)
