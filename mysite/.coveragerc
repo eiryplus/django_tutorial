@@ -4,5 +4,5 @@ omit=venv*/*
     mysite/wsgi.py
     manage.py
     */tests/*
+    */test/*
     */migrations/*
-

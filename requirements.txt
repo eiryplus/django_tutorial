@@ -1,5 +1,5 @@
 Django
-pytest
+pytest<5
 pytest-django
 factory_boy
 pytest-cov

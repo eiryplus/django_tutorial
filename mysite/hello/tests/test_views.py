@@ -59,6 +59,7 @@ class HelloSampleFormsTest(TestCase):
 
 
 class HelloModelsTest(TestCase):
+
     def _get_count(self) -> int:
         from hello.models import Hello
         return Hello.objects.count()
@@ -71,7 +72,7 @@ class HelloModelsTest(TestCase):
     def test_post_valid(self):
         before_cnt = self._get_count()
         url_ = reverse("hello:hello_models")
-        data = {"your_name": "TestName"}
+        data = {"your_name": "Test"}
         response = self.client.post(url_, data=data, follow=True)
         after_cnt = self._get_count()
         self.assertEqual(response.redirect_chain,  [(url_, 302)])
